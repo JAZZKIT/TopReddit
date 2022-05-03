@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		B00A4CB328216E0D0082419C /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A4CB228216E0D0082419C /* Date+.swift */; };
 		B00A4CB528216E470082419C /* Int+.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A4CB428216E470082419C /* Int+.swift */; };
-		B00A4CB8282178330082419C /* ImageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A4CB7282178330082419C /* ImageVC.swift */; };
 		B00A4CBA28217EDF0082419C /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00A4CB928217EDF0082419C /* UIViewController.swift */; };
 		B03ACEE1282153B300DFD65D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03ACEE0282153B300DFD65D /* AppDelegate.swift */; };
 		B03ACEE3282153B300DFD65D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03ACEE2282153B300DFD65D /* SceneDelegate.swift */; };
@@ -26,7 +25,6 @@
 /* Begin PBXFileReference section */
 		B00A4CB228216E0D0082419C /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		B00A4CB428216E470082419C /* Int+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+.swift"; sourceTree = "<group>"; };
-		B00A4CB7282178330082419C /* ImageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC.swift; sourceTree = "<group>"; };
 		B00A4CB928217EDF0082419C /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B03ACEDD282153B300DFD65D /* TopReddit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopReddit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03ACEE0282153B300DFD65D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,14 +59,6 @@
 				B00A4CB928217EDF0082419C /* UIViewController.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		B00A4CB6282177FB0082419C /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				B00A4CB7282178330082419C /* ImageVC.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		B03ACED4282153B200DFD65D = {
@@ -131,7 +121,6 @@
 		B03ACEFD2821565000DFD65D /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				B00A4CB6282177FB0082419C /* Controller */,
 				B03ACEFE2821566700DFD65D /* Cell */,
 				B03ACF012821597A00DFD65D /* View */,
 				B03ACEE4282153B300DFD65D /* MainTableVC.swift */,
@@ -228,7 +217,6 @@
 			files = (
 				B03ACF002821567800DFD65D /* PostCell.swift in Sources */,
 				B03ACEF62821541300DFD65D /* TRError.swift in Sources */,
-				B00A4CB8282178330082419C /* ImageVC.swift in Sources */,
 				B00A4CBA28217EDF0082419C /* UIViewController.swift in Sources */,
 				B03ACEFB2821547900DFD65D /* NetworkingManger.swift in Sources */,
 				B03ACEE5282153B300DFD65D /* MainTableVC.swift in Sources */,
