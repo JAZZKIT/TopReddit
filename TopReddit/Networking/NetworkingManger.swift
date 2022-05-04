@@ -11,10 +11,12 @@ import UIKit
 class NetworkManager {
     
     static let shared = NetworkManager()
-    private let baseURL = "https://www.reddit.com"
+    private let baseURL = "https://reddit.com/top.json"
 
     var isPaginating = false
     
+    var after = ""
+    var count = 0
     
     private init() {}
     
@@ -23,16 +25,16 @@ class NetworkManager {
         if pagination  {
             isPaginating.toggle()
         }
-        let baseURL = URL(string: "https://www.reddit.com/top.json")
         
-        guard let finalURL = baseURL else {
+        let endpoint = after != "" ? baseURL + "?count=\(count)&after=\(after)" : baseURL
+        
+        guard let finalURL = URL(string: endpoint) else {
             return completion(.failure(.unableToComplete))
         }
         print(finalURL)
         
         URLSession.shared.dataTask(with: finalURL) { (data, _, error) in
-            if let error = error {
-                print(error.localizedDescription)
+            if error != nil {
                 return completion(.failure(.invalidResponse))
             }
             
@@ -42,6 +44,8 @@ class NetworkManager {
                 let topLevelDictionary = try JSONDecoder().decode(PostTopLevelObject.self, from: data)
                 let secondLevelDict = topLevelDictionary.data
                 let thirdLevelArray = secondLevelDict.children
+                self.after = (secondLevelDict.after)
+                self.count += 25
                 
                 var arrayOfPosts: [Post] = []
                 
@@ -53,12 +57,9 @@ class NetworkManager {
                 if pagination  {
                     self.isPaginating.toggle()
                 }
-                
-
                 return completion(.success(arrayOfPosts))
                 
             } catch {
-                print(error.localizedDescription)
                 return completion(.failure(.unableToComplete))
             }
         }.resume()
@@ -69,8 +70,7 @@ class NetworkManager {
         guard let thumbnailURL = URL(string: post.thumbnail) else { return completion(.failure(.unableToComplete))}
 
         URLSession.shared.dataTask(with: thumbnailURL) { (data, _, error) in
-            if let error = error {
-                print(error.localizedDescription)
+            if error != nil {
                 return completion(.failure(.invalidResponse))
             }
 

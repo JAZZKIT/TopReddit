@@ -13,7 +13,7 @@ class MainTableVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
+        featchPosts()
     }
     
 // MARK: - Table view data source
@@ -38,7 +38,6 @@ class MainTableVC: UITableViewController {
                 switch result {
                 case .success(let thumbnail):
                     cell.pictureView.image = thumbnail
-                    print("got image")
                 case .failure(_):
                     cell.pictureView.image = UIImage(named: "noImage")
                 }
@@ -53,10 +52,26 @@ class MainTableVC: UITableViewController {
         if (self.tableView.cellForRow(at: indexPath) as? PostCell) != nil {
             let post = posts[indexPath.row]
             
-            if let url = URL(string: post.url_overridden_by_dest) {
+            if let url = URL(string: post.url_overridden_by_dest ?? "") {
                 self.presentSafariVC(with: url )
             }
         }
+    }
+    
+}
+
+// MARK: -  Pagination
+extension MainTableVC {
+    
+    private func createSpinerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        
+        return footerView
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -66,21 +81,28 @@ class MainTableVC: UITableViewController {
 
         if offsetY > contentHeight - height {
             guard !NetworkManager.shared.isPaginating else { return }
-            fetchData()
+            self.tableView.tableFooterView = createSpinerFooter()
+            featchPosts()
+            print(posts.count)
         }
     }
-    
-    
 }
+ 
 
+
+// MARK: - Networking
 extension MainTableVC {
-    func fetchData() {
-        NetworkManager.shared.fetchPosts { result in
+    func featchPosts() {
+        NetworkManager.shared.fetchPosts { [weak self] result in
+            guard let self = self else { return }
+            
             DispatchQueue.main.async {
+                self.tableView.tableFooterView = nil
                 switch result {
                 case .success(let posts):
-                    self.posts = posts
+                    self.posts.append(contentsOf: posts)
                     self.tableView.reloadData()
+                    
                 case .failure(let error):
                     self.presentErrorToUser(message: error.rawValue)
                 }

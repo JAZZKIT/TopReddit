@@ -85,10 +85,7 @@
 				B00A4CB128216DFE0082419C /* Extensions */,
 				B03ACEFD2821565000DFD65D /* Module */,
 				B03ACEF72821542100DFD65D /* Models */,
-				B03ACEE0282153B300DFD65D /* AppDelegate.swift */,
-				B03ACEE2282153B300DFD65D /* SceneDelegate.swift */,
-				B03ACEE9282153B300DFD65D /* Assets.xcassets */,
-				B03ACEEB282153B300DFD65D /* LaunchScreen.storyboard */,
+				B0778F162821BF8F00E0D2FB /* Support */,
 				B03ACEEE282153B300DFD65D /* Info.plist */,
 			);
 			path = TopReddit;
@@ -142,6 +139,17 @@
 				B03ACEE6282153B300DFD65D /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B0778F162821BF8F00E0D2FB /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				B03ACEE0282153B300DFD65D /* AppDelegate.swift */,
+				B03ACEE2282153B300DFD65D /* SceneDelegate.swift */,
+				B03ACEE9282153B300DFD65D /* Assets.xcassets */,
+				B03ACEEB282153B300DFD65D /* LaunchScreen.storyboard */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
